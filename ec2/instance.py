@@ -78,7 +78,6 @@ def status(instance_id):
         except botocore.exceptions.ClientError as error:
             sNot = 'notFound'
             print(f"status [{colored(sNot, 'red')}] \n")
-            continue
 
 @cli.command()
 @click.argument('instance_id')
