@@ -6,12 +6,13 @@ import click
 
 from dotenv import load_dotenv
 from botocore.exceptions import ClientError
+from termcolor import colored
 
 load_dotenv(verbose=True) # LOAD ENV
 
 ARN = os.getenv('MY_ARN')
 ROLE_SESSION = os.getenv('MY_ROLE_SESSION')
-regions = ['ap-northeast-2','us-east-1'] # Set your regions here
+REGIONS = ['ap-northeast-2','us-east-1'] # Set your regions here
 
 #ec2 = None
 
@@ -45,23 +46,38 @@ def cli():
     pass
 
 @cli.command()
+def list_ec2():
+    '''
+    Get list of instances
+    '''
+    #global ec2
+    session = Session()
+    ec2 = session.resource('ec2')
+    for instance in ec2.instances.all():
+        if instance.state['Name'] == 'running':
+            print(f"{instance.id} [{colored(instance.state['Name'], 'green')}] ")
+        else:
+            print(f"{instance.id} [{colored(instance.state['Name'], 'red')}] ")
+            
+@cli.command()
 @click.argument('instance_id')
 def status(instance_id):
     '''
     Get Instance status
     '''
-    global ec2
+    #global ec2
     session = Session()
     #ec2 = session.resource('ec2', region_name=region)
-    for region in regions:
+    for region in REGIONS:
         ec2 = session.resource('ec2', region_name=region)
         instance = ec2.Instance(instance_id)
-        print(f'searching [{region}]')
+        print(f'{region} [searching]')
         try:
             status = instance.state['Name']
-            print(f'status [{status}]\n')
+            print(f"status [{colored(status, 'green')}] \n")
         except botocore.exceptions.ClientError as error:
-            print(f'status [Not Found]\n')
+            sNot = 'notFound'
+            print(f"status [{colored(sNot, 'red')}] \n")
             continue
 
 @cli.command()
