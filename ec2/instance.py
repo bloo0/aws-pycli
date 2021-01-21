@@ -85,7 +85,17 @@ def restart_ec2(instance_id):
     '''
     Restart your Instance
     '''
-    pass
+    session = Session()
+    for region in REGIONS:
+        ec2 = session.resource('ec2', region_name=region)
+        instance = ec2.Instance(instance_id)
+        print(f'{region} [searching]')
+        try:
+            restarted = instance.reboot()
+            print(f"status [{colored('restarting', 'cyan')}] \n")
+        except botocore.exceptions.ClientError as error:
+            sNot = 'notFound'
+            print(f"status [{colored(sNot, 'red')}] \n")
 
 @cli.command()
 @click.argument('instance_id')
@@ -93,7 +103,18 @@ def stop_ec2(instance_id):
     '''
     Stop your Instance
     '''
-    pass
+    session = Session()
+    for region in REGIONS:
+        ec2 = session.resource('ec2', region_name=region)
+        instance = ec2.Instance(instance_id)
+        print(f'{region} [searching]')
+        try:
+            stopped = instance.stop()
+            #forceStop = instance.stop(Force=True)
+            print(f"status [{colored('stopping', 'cyan')}] \n")
+        except botocore.exceptions.ClientError as error:
+            sNot = 'notFound'
+            print(f"status [{colored(sNot, 'red')}] \n")
 
 @cli.command()
 @click.argument('instance_id')
@@ -101,7 +122,17 @@ def start_ec2(instance_id):
     '''
     Start your Instance
     '''
-    pass
+    session = Session()
+    for region in REGIONS:
+        ec2 = session.resource('ec2', region_name=region)
+        instance = ec2.Instance(instance_id)
+        print(f'{region} [searching]')
+        try:
+            started = instance.start()
+            print(f"status [{colored('starting', 'cyan')}] \n")
+        except botocore.exceptions.ClientError as error:
+            sNot = 'notFound'
+            print(f"status [{colored(sNot, 'red')}] \n")
 
 @cli.command()
 @click.argument('instance_id')
@@ -109,7 +140,17 @@ def delete_ec2(instance_id):
     '''
     Delete your Instance
     '''
-    pass
+    session = Session()
+    for region in REGIONS:
+        ec2 = session.resource('ec2', region_name=region)
+        instance = ec2.Instance(instance_id)
+        print(f'{region} [searching]')
+        try:
+            terminate = instance.terminate()
+            print(f"status [{colored('terminating', 'cyan')}] \n")
+        except botocore.exceptions.ClientError as error:
+            sNot = 'notFound'
+            print(f"status [{colored(sNot, 'red')}] \n")
 
 if __name__ == '__main__':
     cli()
