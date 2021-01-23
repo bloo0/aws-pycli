@@ -7,9 +7,11 @@ Getting Started
 ------------
 
 1. Install the following python module:
-- `pip install click`
-- `pip install python-dotenv`
-- `pip install termcolor`
+```python
+pip install click
+pip install python-dotenv
+pip install termcolor
+```
 
 2. Setup AWS Assume Role
 3. Add your AWS Regions
@@ -17,17 +19,17 @@ Getting Started
 
 How to use:
 ------------
-```sh
+```python
 ./instance.py status <your_instance_id>
 ```
 
-list Commands:
-- `delete-ec2   Delete your Instance`
-- `list-ec2     Get list of instances`
-- `restart-ec2  Restart your Instance`
-- `start-ec2    Start your Instance`
-- `status       Get Instance status`
-- `stop-ec2     Stop your Instance`
+List of ec2 commands:
+- `delete-ec2`     Delete your Instance
+- `list-ec2`       Get list of instances
+- `restart-ec2`    Restart your Instance
+- `start-ec2`      Start your Instance
+- `status`         Get Instance status
+- `stop-ec2`       Stop your Instance
 
 
 Future updates
