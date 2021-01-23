@@ -15,6 +15,18 @@ Getting Started
 3. Add your AWS Regions
 4. Set your environmental variables
 
+How to use:
+------------
+
+Commands:
+  `delete-ec2   Delete your Instance`
+  `list-ec2     Get list of instances`
+  `restart-ec2  Restart your Instance`
+  `start-ec2    Start your Instance`
+  `status       Get Instance status`
+  `stop-ec2     Stop your Instance`
+
+
 Future updates
 ------------
 1. Add other AWS Services to manage
