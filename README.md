@@ -17,14 +17,17 @@ Getting Started
 
 How to use:
 ------------
+```sh
+./instance.py status <your_instance_id>
+```
 
-Commands:
-  `delete-ec2   Delete your Instance`
-  `list-ec2     Get list of instances`
-  `restart-ec2  Restart your Instance`
-  `start-ec2    Start your Instance`
-  `status       Get Instance status`
-  `stop-ec2     Stop your Instance`
+list Commands:
+- `delete-ec2   Delete your Instance`
+- `list-ec2     Get list of instances`
+- `restart-ec2  Restart your Instance`
+- `start-ec2    Start your Instance`
+- `status       Get Instance status`
+- `stop-ec2     Stop your Instance`
 
 
 Future updates
